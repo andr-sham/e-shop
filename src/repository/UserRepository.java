@@ -2,11 +2,14 @@ package repository;
 
 import dto.User;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 public class UserRepository implements IUserRepository {
 
 
-    private User[] userDatabase = new User[10];
-    private int counter = 1;
+    private List<User> userDatabase = new ArrayList<>();
 
 
     @Override
@@ -23,13 +26,22 @@ public class UserRepository implements IUserRepository {
     @Override
     public User saveUsers(String login, String password) {
         User user = new User();
-        user.setId(counter);
+        user.setId(userDatabase.size() + 1);
         user.setLogin(login);
         user.setPassword(password);
 
+        userDatabase.add(user);
 
-        userDatabase[counter - 1] = user;
-        counter++;
         return user;
+    }
+
+    @Override
+    public User updateUser(User userToUpdate) {
+
+        userDatabase.remove(userToUpdate);
+
+        userDatabase.add(userToUpdate);
+
+        return userToUpdate;
     }
 }

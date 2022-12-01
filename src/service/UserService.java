@@ -34,6 +34,8 @@ public class UserService implements IUserService {
 
         userRepository.saveUsers(login, password);
 
+
+        System.out.println("Пользователь" + login + "зарегистрирован");
         return true;
     }
 
@@ -44,13 +46,13 @@ public class UserService implements IUserService {
         return userByLogin != null;
     }
 
-    private boolean isValidPassword(String password){
+    private boolean isValidPassword(String password) {
         char[] chars = password.toCharArray();
 
         boolean hasDigit = false;
         boolean hasLetter = false;
 
-        for (char passwordChar : chars){
+        for (char passwordChar : chars) {
             boolean isDigit = Character.isDigit(passwordChar);
 
             hasDigit = hasDigit || isDigit;
@@ -62,6 +64,26 @@ public class UserService implements IUserService {
 
     @Override
     public User login(String login, String password) {
-        return null;
+        User userByLogin = userRepository.getUserByLogin(login);
+
+        if (userByLogin == null) {
+            System.out.println("Авторизация не пройдена. Пользователь с логином " + login + " в системе не найден");
+            return null;
+        }
+
+        boolean passwordCheckPassed = userByLogin.getPassword().equals(password);
+
+        if (!passwordCheckPassed) {
+            System.out.println("Авторизация не пройдена. Пароль для логина " + login + " указан некорректный");
+            return null;
+        }
+
+        System.out.println("Пользователь " + login + " успешно авторизован.");
+        return userByLogin;
+    }
+
+    @Override
+    public User updateUserProfile(User user) {
+        return userRepository.updateUser(user);
     }
 }

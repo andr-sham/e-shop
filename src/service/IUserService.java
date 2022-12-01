@@ -7,6 +7,7 @@ public interface IUserService {
 
     User login(String login, String password);
 
+    User updateUserProfile(User user);
 
 
 }
