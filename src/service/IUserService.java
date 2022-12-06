@@ -2,12 +2,12 @@ package service;
 
 import dto.User;
 
-public interface IUserService {
+public interface IUserService<T extends User> {
     boolean register(String login, String password);
 
-    User login(String login, String password);
+    T login(String login, String password);
 
-    User updateUserProfile(User user);
+    T updateUserProfile(T user);
 
 
 }

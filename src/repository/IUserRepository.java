@@ -2,12 +2,12 @@ package repository;
 
 import dto.User;
 
-public interface IUserRepository {
+public interface IUserRepository<T extends User> {
 
-    User getUserByLogin(String login);
+    T getUserByLogin(String login);
 
-    User saveUsers(String login, String password);
+    T saveUsers(String login, String password);
 
-    User updateUser(User userToUpdate);
+    T updateUser(T userToUpdate);
 
 }

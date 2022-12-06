@@ -1,15 +1,15 @@
 package service;
 
 import dto.User;
-import repository.UserRepository;
+import repository.IUserRepository;
 
-public class UserService implements IUserService {
 
-    private UserRepository userRepository;
+public abstract class UserService<T extends User> implements IUserService<T> {
 
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    public abstract IUserRepository<T> getRepository();
+
+
+
 
     @Override
     public boolean register(String login, String password) {
@@ -32,17 +32,13 @@ public class UserService implements IUserService {
             return false;
         }
 
-        userRepository.saveUsers(login, password);
-
-
-        System.out.println("Пользователь" + login + "зарегистрирован");
+        getRepository().saveUsers(login, password);
+        System.out.println("Пользователь " + login + " зарегистрирован");
         return true;
     }
 
     private boolean isLoginAlreadyUsed(String searchLogin) {
-        User userByLogin = userRepository.getUserByLogin(searchLogin);
-
-
+        User userByLogin = getRepository().getUserByLogin(searchLogin);
         return userByLogin != null;
     }
 
@@ -63,8 +59,8 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User login(String login, String password) {
-        User userByLogin = userRepository.getUserByLogin(login);
+    public T login(String login, String password) {
+        T userByLogin = getRepository().getUserByLogin(login);
 
         if (userByLogin == null) {
             System.out.println("Авторизация не пройдена. Пользователь с логином " + login + " в системе не найден");
@@ -83,7 +79,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User updateUserProfile(User user) {
-        return userRepository.updateUser(user);
+    public T updateUserProfile(T user) {
+        return getRepository().updateUser(user);
     }
 }
