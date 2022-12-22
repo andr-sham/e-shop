@@ -1,12 +1,13 @@
 package service;
 
 import dto.User;
+import repository.ICrudRepository;
 import repository.IUserRepository;
 
 
-public abstract class UserService<T extends User> implements IUserService<T> {
-
-    public abstract IUserRepository<T> getRepository();
+public abstract class UserService<T extends User>{
+/*
+    public abstract ICrudRepository<T> getRepository();
 
 
 
@@ -32,7 +33,7 @@ public abstract class UserService<T extends User> implements IUserService<T> {
             return false;
         }
 
-        getRepository().saveUsers(login, password);
+        getRepository().save();
         System.out.println("Пользователь " + login + " зарегистрирован");
         return true;
     }
@@ -81,5 +82,5 @@ public abstract class UserService<T extends User> implements IUserService<T> {
     @Override
     public T updateUserProfile(T user) {
         return getRepository().updateUser(user);
-    }
+    }*/
 }

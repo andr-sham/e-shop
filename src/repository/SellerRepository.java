@@ -40,7 +40,7 @@ public class SellerRepository implements IUserRepository<Seller> {
 
         database.remove(sellerToUpdate);
 
-        database.add(sellerToUpdate);  // todo этого нет
+        database.add(sellerToUpdate);
 
         return sellerToUpdate;
     }

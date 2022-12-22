@@ -1,7 +1,6 @@
 package dto;
 
-public abstract class User{
-    private long id;
+public abstract class User extends LongIdDto {
 
     private String login;
 
@@ -14,15 +13,6 @@ public abstract class User{
 
     private String phoneNumber;
 
-
-    public long getId() {
-        return id;
-    }
-
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
 
     public String getLogin() {
@@ -76,21 +66,4 @@ public abstract class User{
         this.phoneNumber = phoneNumber;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-
-        User user = (User) o;
-
-        return id == user.id;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + (int) (id ^ (id >>> 32));
-        return result;
-    }
 }

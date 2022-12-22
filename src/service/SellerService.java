@@ -1,18 +1,19 @@
 package service;
 
 import dto.Seller;
+import repository.ICrudRepository;
 import repository.IUserRepository;
 
-public class SellerService extends UserService<Seller>{
+public class SellerService extends  UserService<Seller>{
 
-    private IUserRepository userRepository; //todo raw
+/*    private ICrudRepository crudRepository;
 
-    public SellerService(IUserRepository userRepository) {  //todo raw
-        this.userRepository = userRepository;
+    public SellerService(ICrudRepository crudRepository) {
+        this.crudRepository = crudRepository;
     }
 
     @Override
-    public IUserRepository<Seller> getRepository() {
-        return userRepository;
-    }
+    public ICrudRepository<Seller> getRepository() {
+        return crudRepository;
+    }*/
 }
