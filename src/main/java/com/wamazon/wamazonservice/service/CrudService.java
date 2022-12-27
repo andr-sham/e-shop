@@ -9,12 +9,12 @@ public abstract class CrudService<T extends LongIdDto> implements ICrudService<T
     public abstract ICrudRepository<T> getRepository();
 
     protected abstract void validate(T dto);
+
     @Override
     public T save(T dtoToSave) {
         validate(dtoToSave);
         return getRepository().save(dtoToSave);
     }
-
 
 
     @Override

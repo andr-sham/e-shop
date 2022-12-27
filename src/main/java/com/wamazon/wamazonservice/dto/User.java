@@ -14,7 +14,6 @@ public abstract class User extends LongIdDto {
     private String phoneNumber;
 
 
-
     public String getLogin() {
         return login;
     }

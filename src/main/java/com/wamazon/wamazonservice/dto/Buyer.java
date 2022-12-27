@@ -1,6 +1,6 @@
 package com.wamazon.wamazonservice.dto;
 
-public class Buyer extends User{
+public class Buyer extends User {
 
     private String cardNumber;
 

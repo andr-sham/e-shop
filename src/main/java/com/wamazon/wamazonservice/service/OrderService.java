@@ -4,9 +4,9 @@ package com.wamazon.wamazonservice.service;
 import com.wamazon.wamazonservice.dto.Order;
 import com.wamazon.wamazonservice.repository.ICrudRepository;
 
-public class OrderService extends CrudService<Order>{
+public class OrderService extends CrudService<Order> {
 
-    private ICrudRepository crudRepository;
+    private final ICrudRepository crudRepository;
 
     public OrderService(ICrudRepository crudRepository) {
         this.crudRepository = crudRepository;

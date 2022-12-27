@@ -1,6 +1,6 @@
 package com.wamazon.wamazonservice.service;
 
-public class BuyerService{
+public class BuyerService {
 
 /*    private ICrudRepository crudRepository;
 

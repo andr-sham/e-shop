@@ -2,8 +2,7 @@ package com.wamazon.wamazonservice.dto;
 
 import java.util.List;
 
-public class Order extends LongIdDto  {
-
+public class Order extends LongIdDto {
 
 
     private List<Product> products;

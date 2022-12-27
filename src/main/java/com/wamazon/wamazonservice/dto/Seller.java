@@ -1,6 +1,6 @@
 package com.wamazon.wamazonservice.dto;
 
-public class Seller extends User{
+public class Seller extends User {
 
     private String inn;
 

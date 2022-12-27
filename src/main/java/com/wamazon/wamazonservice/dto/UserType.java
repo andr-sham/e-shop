@@ -8,8 +8,7 @@ public enum UserType {
     SELLER_MANAGER(3),
     CLIENT(1);
 
-    private int level;
-
+    private final int level;
 
 
     UserType(int level) {

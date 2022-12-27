@@ -1,7 +1,6 @@
 package com.wamazon.wamazonservice.repository;
 
 
-
 import com.wamazon.wamazonservice.dto.LongIdDto;
 
 import java.util.ArrayList;
@@ -10,8 +9,7 @@ import java.util.List;
 public class CrudRepository<T extends LongIdDto> implements ICrudRepository<T> {
 
 
-    List<T> database= new ArrayList<>();
-
+    List<T> database = new ArrayList<>(); //todo общий репозиторий для всех объектов?
 
 
     @Override

@@ -3,7 +3,7 @@ package com.wamazon.wamazonservice.service;
 
 import com.wamazon.wamazonservice.dto.Seller;
 
-public class SellerService extends  UserService<Seller>{
+public class SellerService extends UserService<Seller> {
 
 /*    private ICrudRepository crudRepository;
 
