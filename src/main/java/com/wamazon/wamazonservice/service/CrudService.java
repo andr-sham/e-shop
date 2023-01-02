@@ -12,6 +12,10 @@ public abstract class CrudService<T extends LongIdDto> implements ICrudService<T
 
     @Override
     public T save(T dtoToSave) {
+        if (dtoToSave.getId() != null) {
+            throw new RuntimeException("Ошибка сохранения");
+        }
+
         validate(dtoToSave);
         return getRepository().save(dtoToSave);
     }
@@ -23,7 +27,12 @@ public abstract class CrudService<T extends LongIdDto> implements ICrudService<T
     }
 
     @Override
-    public T update(T dtoToUpdate) {
+    public T update(T dtoToUpdate){
+
+        if (dtoToUpdate.getId() == null) {
+            throw new RuntimeException("Ошибка обновления");
+        }
+
         validate(dtoToUpdate);
         return getRepository().update(dtoToUpdate);
     }

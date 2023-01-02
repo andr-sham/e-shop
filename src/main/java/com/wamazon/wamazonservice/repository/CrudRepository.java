@@ -2,18 +2,22 @@ package com.wamazon.wamazonservice.repository;
 
 
 import com.wamazon.wamazonservice.dto.LongIdDto;
+import com.wamazon.wamazonservice.exception.NotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CrudRepository<T extends LongIdDto> implements ICrudRepository<T> {
+public abstract class CrudRepository<T extends LongIdDto> implements ICrudRepository<T> {
 
 
-    List<T> database = new ArrayList<>(); //todo общий репозиторий для всех объектов?
+    List<T> database = new ArrayList<>();
+
+    private long idSequence;
 
 
     @Override
     public T save(T dtoToSave) {
+        dtoToSave.setId(++idSequence);
         database.add(dtoToSave);
         return dtoToSave;
     }
@@ -21,11 +25,11 @@ public class CrudRepository<T extends LongIdDto> implements ICrudRepository<T> {
     @Override
     public T findOne(Long id) {
         for (T dto : database) {
-            if (dto.getId() == id) {
+            if (dto.getId().equals(id)) {
                 return dto;
             }
         }
-        throw new RuntimeException("Объект с id " + id + " не был найден");
+        throw new NotFoundException();
     }
 
     @Override
@@ -38,6 +42,6 @@ public class CrudRepository<T extends LongIdDto> implements ICrudRepository<T> {
     @Override
     public void delete(Long id) {
 
-        database.removeIf(next -> next.getId() == id);
+        database.removeIf(next -> next.getId().equals(id));
     }
 }

@@ -2,16 +2,16 @@ package com.wamazon.wamazonservice.service;
 
 
 import com.wamazon.wamazonservice.dto.Product;
+import com.wamazon.wamazonservice.exception.ValidationException;
 import com.wamazon.wamazonservice.repository.ICrudRepository;
 import com.wamazon.wamazonservice.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component
-public class ProductService extends CrudService<Product> {
+@Service
+public class ProductService extends CrudService<Product> implements IProductService {
 
     @Autowired
     private ProductRepository productRepository;
@@ -28,7 +28,7 @@ public class ProductService extends CrudService<Product> {
     @Override
     protected void validate(Product product) {
         if (product.getName() == null) {
-            throw new RuntimeException("Нельзя сохранять товар без названия");
+            throw new ValidationException("Нельзя сохранять товар без названия");
         }
 
     }

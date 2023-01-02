@@ -2,14 +2,14 @@ package com.wamazon.wamazonservice.dto;
 
 public abstract class LongIdDto {
 
-    private long Id;
+    private Long id;
 
-    public long getId() {
-        return Id;
+    public Long getId() {
+        return id;
     }
 
     public void setId(long id) {
-        Id = id;
+        this.id = id;
     }
 
     @Override
@@ -19,11 +19,11 @@ public abstract class LongIdDto {
 
         LongIdDto longIdDto = (LongIdDto) o;
 
-        return Id == longIdDto.Id;
+        return id.equals(longIdDto.id);
     }
 
     @Override
     public int hashCode() {
-        return (int) (Id ^ (Id >>> 32));
+        return (int) (id ^ (id >>> 32));
     }
 }
