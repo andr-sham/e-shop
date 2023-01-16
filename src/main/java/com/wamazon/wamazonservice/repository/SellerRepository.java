@@ -5,13 +5,13 @@ import com.wamazon.wamazonservice.dto.Seller;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SellerRepository extends UserRepository<Seller> {
+public class SellerRepository extends UserRepository<Seller> implements ISellerRepository{
 
-
+@Override
     public Seller findSellerByOrganization(String organizationName) {
-        for (Seller user : database) {
-            if (user.getOrganizationName().equalsIgnoreCase(organizationName)) {
-                return user;
+        for (Seller seller : database) {
+            if (seller.getOrganizationName().equalsIgnoreCase(organizationName)) {
+                return seller;
             }
         }
         return null;

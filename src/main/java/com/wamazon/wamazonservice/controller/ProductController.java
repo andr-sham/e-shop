@@ -1,6 +1,7 @@
 package com.wamazon.wamazonservice.controller;
 
 import com.wamazon.wamazonservice.dto.Product;
+import com.wamazon.wamazonservice.service.ICrudService;
 import com.wamazon.wamazonservice.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/product")
-public class ProductController {  //todo нужен интерфейс?
+public class ProductController extends CrudController<Product>{
     @Autowired
     private IProductService productService;
 
@@ -18,25 +19,9 @@ public class ProductController {  //todo нужен интерфейс?
         return productService.findByName(name);
     }
 
-    @GetMapping("/{id}")
-    public Product get(@PathVariable Long id) {
-        return productService.get(id);
+
+    @Override
+    public ICrudService getService() {
+        return productService;
     }
-
-    @PostMapping
-    public Product save(@RequestBody Product product) {
-        return productService.save(product);
-    }
-
-    @PutMapping
-    public Product update(@RequestBody Product product) {
-        return productService.update(product);
-    }
-
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
-        productService.delete(id);
-    }
-
-
 }

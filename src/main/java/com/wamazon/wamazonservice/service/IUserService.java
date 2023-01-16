@@ -1,14 +1,13 @@
 package com.wamazon.wamazonservice.service;
 
 
+import com.wamazon.wamazonservice.dto.RegistrationDto;
 import com.wamazon.wamazonservice.dto.User;
 
-public interface IUserService<T extends User> {
-    boolean register(String login, String password);
+public interface IUserService<T extends User> extends ICrudService<T> {
+    boolean register(RegistrationDto registrationDto);
 
     T login(String login, String password);
-
-    T updateUserProfile(T user);
 
 
 }
